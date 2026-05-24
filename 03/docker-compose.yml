@@ -1,0 +1,28 @@
+services:
+  python:
+    build: ./python
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+  java_web_flux:
+    build: ./java/demo
+    ports:
+      - "8091:8091"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+  java_servlet:
+    build: ./java/demovt
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:       
+          cpus: '1'
+          memory: 512M

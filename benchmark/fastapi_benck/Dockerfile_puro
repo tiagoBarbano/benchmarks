@@ -1,0 +1,24 @@
+# Imagem base Python
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 
+
+WORKDIR /app
+
+# Instala bibliotecas diretamente (sem requirements.txt)
+RUN pip install --upgrade pip && pip install \
+    # fastapi==0.116.1 \
+    # uvicorn[standard]==0.35
+    granian[uvloop]==2.5.4
+    # orjson==3.11.3 
+
+# Copia o app
+COPY main_puro.py .
+
+EXPOSE 8000
+
+# Usa auto-instrumentação do OpenTelemetry com Uvicorn
+#ENTRYPOINT ["uvicorn", "main_puro:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "warning", "--workers", "1", "--loop", "uvloop"]
+ENTRYPOINT ["granian",  "--interface",  "asginl",  "main_puro:app", "--host", "0.0.0.0", "--port", "8000", "--loop", "uvloop", "--workers", "2"]

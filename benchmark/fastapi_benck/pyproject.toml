@@ -1,0 +1,17 @@
+[project]
+name = "fastapi-benck"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.127.0",
+    "gunicorn>=23.0.0",
+    "light-health==1.0.1",
+    "msgspec>=0.20.0",
+    "orjson>=3.11.5",
+    "pymongo>=4.15.5",
+    "redis>=7.1.0",
+    "uvicorn>=0.40.0",
+    "uvloop>=0.22.1",
+]

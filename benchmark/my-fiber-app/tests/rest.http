@@ -1,0 +1,17 @@
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": 1,
+    "email": "tiago@example.com",
+    "cep": "01001000"
+}
+
+### 
+
+GET http://localhost:3000/api/users/6861e7fb3fb48378c7c92676
+Content-Type: application/json 
+
+###
+
+GET http://localhost:3000/api/users

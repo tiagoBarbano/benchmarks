@@ -1,0 +1,104 @@
+volumes:
+  dbdata6:
+  redis-data:
+
+
+services:
+  my-app-undertow:
+    build: demovt/.
+    container_name: spring-undertow
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  my-app-webflux:
+    build: demo/.
+    container_name: spring-webflux
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  my-app-fastapi:
+    build: fastapi_benck/.
+    container_name: fastapi
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  my-fiber-app:
+    image: tiagobarbano/myfiberapp:latest
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  my-app-python-puro:
+    build:
+      context: fastapi_benck
+      dockerfile: Dockerfile1
+    container_name: python-puro
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  node-fastify:
+    build: fastify/.
+    container_name: node-fastify
+    environment:
+      PORT: 3000
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: redis1234
+      MONGO_URL: mongodb://localhost:27017/cotador
+    network_mode: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2" # máximo 1.0 CPUs
+          memory: 1g # máximo 1GB RAM
+  mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_OPTIONS=--wiredTigerCacheSizeGB 4
+      - MONGO_OPTIONS=--enableCompression
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - dbdata6:/data/db
+    network_mode: host
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 3g
+          cpus: "2.0"
+  redis:
+    image: redis:7
+    command: [ "redis-server", "--requirepass", "redis1234" ]
+    network_mode: host
+    volumes:
+        - redis-data:/data
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1024M
+        reservations:
+          cpus: "0.5"
+          memory: 512M
