@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Portal de APIs</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/app.css"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>Portal de APIs</h1>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Buscar APIs, domínio ou tags..."
+        >
+
+    </header>
+
+    {% include 'components/dashboard.html' %}
+
+    <div id="catalog">
+
+        {% for dominio, items in grouped.items() %}
+
+            <section class="domain">
+
+                <h2>
+                    📁 {{ dominio }}
+                </h2>
+
+                <div class="cards">
+
+                    {% for api in items %}
+
+                        {% include 'components/card.html' %}
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script src="/static/js/catalog.js"></script>
+
+</body>
+
+</html>

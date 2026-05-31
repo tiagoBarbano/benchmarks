@@ -12,7 +12,9 @@ RUN pip install --upgrade pip && pip install \
     fastapi \
     uvloop \
     gunicorn \
-    msgspec
+    msgspec \
+    pydantic \
+    granian
 
 # Copia o app
 COPY main.py .
@@ -32,3 +34,12 @@ ENTRYPOINT [ "sh", "-c", "\
         --log-level warning \
         --preload \
         --reuse-port" ]
+
+# ENTRYPOINT [ "sh", "-c", "\
+#     exec granian main:app \
+#         --interface asginl \
+#         --loop uvloop \
+#         --host 0.0.0.0 \
+#         --port 8000 \
+#         --workers 1 \
+#         --backpressure 75000 " ]

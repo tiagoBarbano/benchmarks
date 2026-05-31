@@ -1,0 +1,78 @@
+<div
+    class="card api-card"
+    data-search="
+        {{ api.nome }}
+        {{ api.descricao }}
+        {{ api.dominio }}
+        {{ api.tags | join(' ') }}
+    "
+>
+
+    <div class="card-header">
+
+        <h3>
+            {{ api.nome }}
+        </h3>
+
+        {% if api.status == 'UP' %}
+
+            <span class="status up">
+                🟢 UP
+            </span>
+
+        {% else %}
+
+            <span class="status down">
+                🔴 DOWN
+            </span>
+
+        {% endif %}
+
+    </div>
+
+    <p class="description">
+        {{ api.descricao }}
+    </p>
+
+    <div class="version">
+
+        Versão:
+        <strong>
+            {{ api.version or '-' }}
+        </strong>
+
+    </div>
+
+    <div class="tags">
+
+        {% for tag in api.tags %}
+
+            <span class="tag">
+                {{ tag }}
+            </span>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="actions">
+
+        <a
+            class="btn"
+            href="/swagger?url={{ api.openapi }}"
+            target="_blank"
+        >
+            Swagger
+        </a>
+
+        <a
+            class="btn secondary"
+            href="{{ api.openapi }}"
+            target="_blank"
+        >
+            OpenAPI
+        </a>
+
+    </div>
+
+</div>

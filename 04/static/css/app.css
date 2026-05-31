@@ -1,0 +1,185 @@
+body {
+
+    margin: 0;
+
+    background: #f5f7fb;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+}
+
+.container {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 24px;
+}
+
+header {
+
+    margin-bottom: 24px;
+}
+
+header h1 {
+
+    margin-bottom: 12px;
+}
+
+#search {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+}
+
+.dashboard {
+
+    display: flex;
+
+    gap: 16px;
+
+    margin-bottom: 32px;
+}
+
+.metric {
+
+    flex: 1;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+.number {
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+.label {
+
+    color: #666;
+}
+
+.domain {
+
+    margin-bottom: 40px;
+}
+
+.cards {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+}
+
+.card {
+
+    width: 340px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+
+    transition: .2s;
+}
+
+.card:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.description {
+
+    color: #666;
+
+    min-height: 50px;
+}
+
+.up {
+
+    color: green;
+}
+
+.down {
+
+    color: red;
+}
+
+.tags {
+
+    margin-top: 12px;
+
+    margin-bottom: 12px;
+}
+
+.tag {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    margin: 2px;
+
+    border-radius: 20px;
+
+    background: #eef3ff;
+
+    font-size: 12px;
+}
+
+.actions {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.btn {
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    background: #2563eb;
+
+    color: white;
+}
+
+.btn.secondary {
+
+    background: #6b7280;
+}

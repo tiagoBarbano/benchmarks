@@ -1,0 +1,27 @@
+apis:
+
+  - id: oferta-core
+    nome: Oferta Core
+    dominio: Comercial
+    descricao: Motor de ofertas
+
+    tags:
+      - fastapi
+      - ofertas
+      - comercial
+
+    openapi: http://localhost:8000/openapi.json
+    healthcheck: http://localhost:8000/health
+
+
+  - id: teste-down-core
+    nome: Oteste Core
+    dominio: Produto
+    descricao: CRUD
+
+    tags:
+      - springboot
+      - mongodb
+
+    openapi: http://localhost:8001/openapi.json
+    healthcheck: http://localhost:8001/health
